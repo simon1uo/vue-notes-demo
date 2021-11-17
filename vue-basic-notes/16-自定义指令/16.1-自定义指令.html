@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>16.1-自定义指令</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>🌰 16.1-自定义指令</h1>
+    需求：<code>v-big</code>指令，与<code>v-text</code>指令相似，但会把绑定的数值放大10倍；<br>
+    <code>v-fbind</code>，可以让其所绑定的 <code>input</code>元素默认获取焦点；
+
+    <h2>hello, {{name}}</h2>
+    <h2>当前的n值是：<span v-text="n"></span> </h2>
+    <!-- <h2>放大10倍后的n值是：<span v-big-number="n"></span> </h2> -->
+    <h2>放大10倍后的n值是：<span v-big="n"></span> </h2>
+    <button @click="n++">点我n+1</button>
+
+    <hr/>
+    <h2>获取焦点</h2>
+    <input type="text" v-fbind:value="n">
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.producitonTip = false
+
+    new Vue({
+        el: "#root",
+        data: {
+            name: 'simon',
+            n: 1
+        },
+        //自定义指令
+        directives: {
+            big(element, binding) {
+                console.log('big', this)
+                element.innerText = binding.value * 10
+            },
+            fbind: {
+                // 指令与元素成功绑定时(一上来就)
+                bind(element, binding) {
+                    element.value = biding.value
+                },
+                // 指令所在元素被插入页面时
+                inserted(element, binding) {
+                    element.focus()
+                },
+                //指令所在的模版倍重新解析时
+                update(element, binding) {
+                    element.value = binding.value;
+                }
+            }
+        }
+    })
+</script>
+</html>
