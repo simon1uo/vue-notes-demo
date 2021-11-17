@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>3.1-数据绑定</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 1. 准备容器 -->
+    <div id="root">
+        单向数据绑定：<input type="text" v-bind:value="name">
+        <br />
+        双向数据绑定：<input type="text" v-model:value="name">
+
+        <hr />
+        <!-- 简写 -->
+        单向数据绑定：<input type="text" :value="name">
+        <br />
+        双向数据绑定：<input type="text" v-model="name">
+    </div>
+
+    <script>
+        Vue.config.producitonTip = false;
+
+        // 创建一个Vue实例
+        new Vue({
+            el: '#root', // el 指定当前Vue实例为哪个容器服务，通常为css选择器-id选择器
+            data: {
+                // 存储数据，数据供指定的容器使用
+                name: 'simon',
+                age: '1',
+                school: {
+                    name: 'school-name',
+                    url: 'bilibili.com'
+                },
+                url: 'https://google.com/',
+            }
+        }); // 传一个参数，配置对象
+    </script>
+</body>
+
+</html>

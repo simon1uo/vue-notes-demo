@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>15.5-v-pre指令</title>
+    <!-- 引入Vue -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!-- 准备好一个容器-->
+<div id="root">
+    <h1>🌰 15.5-v-pre指令</h1>
+    <h2 v-pre>Vue其实很简单</h2>
+    <h2 >当前的n值是:{{n}}</h2>
+    <button @click="n++">点我n+1</button>
+</div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+    new Vue({
+        el:'#root',
+        data:{
+            n:1
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>6.3-Vue中的数据代理</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 1. 准备容器 -->
+    <div id="root">
+        <h2>hi, {{name}}</h2>
+        <h2>from {{address}}</h2>
+    </div>
+
+    <script>
+        Vue.config.producitonTip = false;
+
+        let data = {
+            name: 'simon',
+            address: 'Address'
+        };
+        // 创建一个Vue实例
+        const vm = new Vue({
+            el: '#root',
+            data
+        });
+        console.log(vm);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7.3-键盘事件</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <input type="text" @keyup="showInfo" placeholder="按下回车键提示">
+    </div>
+
+    <script type="text/javascript">
+        const vm = new Vue({
+            el: '#root',
+            methods:{
+                showInfo(e){
+                    console.log(e.key, e.keyCode); // 获取当前按下的按键
+                    console.log(e.target.value);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

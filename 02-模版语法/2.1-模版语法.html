@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2.1-模版语法-插值和指令语法的使用</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 1. 准备容器 -->
+    <div id="root">
+        <h1>插值语法</h1>
+        <h3> hello, {{name}}, {{age}}</h3> 
+        
+        <hr/>
+        <h1>指令语法</h1>
+        <a v-bind:href="school.url" >页面名称：{{school.url}}</a>
+    </div>
+
+    <script>
+        Vue.config.producitonTip = false;
+
+        // 创建一个Vue实例
+        const x = new Vue({
+            el: '#root', // el 指定当前Vue实例为哪个容器服务，通常为css选择器-id选择器
+            data: {
+                // 存储数据，数据供指定的容器使用
+                name: 'simon',
+                age: '1',
+                school: {
+                    name: 'school-name',
+                    url: 'bilibili.com'
+                },
+                url: 'https://google.com/',
+            }   
+        }); // 传一个参数，配置对象
+        
+    </script>
+</body>
+</html>

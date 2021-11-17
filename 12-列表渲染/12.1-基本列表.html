@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>12.1-基本列表</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!-- 准备好一个容器-->
+<div id="root">
+
+    <h1>🌰12.1-基本列表渲染：</h1>
+    <!--  遍历数组 -->
+    <h2> persons 列表</h2>
+    <ul>
+        <li v-for="(p, index) in persons" :key="index">
+            {{p.name}}-{{p.age}}
+        </li>
+    </ul>
+
+    <h2> cars 列表</h2>
+    <!-- 遍历对象 -->
+    <ul>
+        <li v-for="(value,k) of cars" :key="k">
+            {{k}}-{{value}}
+        </li>
+    </ul>
+
+    <h2> str 字符串</h2>
+    <!-- 遍历字符串 -->
+    <ul>
+        <li v-for="(char,index) of str" :key="index">
+            {{char}} - {{index}}
+        </li>
+    </ul>
+    <h2>遍历指定次数</h2>
+    <!-- 遍历指定次数 -->
+    <ul>
+        <li v-for="(numbers,index) of 5" :key="index">
+            {{ numbers }} - {{index}}
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    new Vue({
+        el: '#root',
+        data: {
+            persons: [
+                {id: '001', name: '张三', age: 18},
+                {id: '002', name: '李四', age: 19},
+                {id: '003', name: '王五', age: 20}
+            ],
+            cars: {
+                name: '奥迪A8',
+                price: '70万',
+                color: '黑色'
+            },
+            str: 'hello'
+        }
+    })
+</script>
+</body>
+</html>

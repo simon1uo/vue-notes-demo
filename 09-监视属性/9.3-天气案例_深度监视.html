@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.天气案例_深度监视</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>今天的天气很{{info}}</h2>
+        <button @click='changeWeather()'>切换天气</button>
+        <hr />
+        <h3>a的值：{{numbers.a}}</h3>
+        <button @click="numbers.a++">a++</button>
+        <h3>b的值：{{numbers.b}}</h3>
+        <button @click="numbers.b++">a++</button>
+
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true,
+                numbers: {
+                    a: 1,
+                    b: 2
+                }
+            },
+            methods: {
+                changeWeather() {
+                    this.isHot = !this.isHot
+                }
+            },
+            computed: {
+                info() {
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+            },
+            watch: {
+                isHot: {
+                    // immediate: true,
+                    // 当isHot发生改变时被调用
+                    handler(newValue, oldValue) {
+                        console.log('isHot被修改了');
+                        console.log(newValue, oldValue);
+                    }
+                },
+                // 监视多级结构中的某个属性的变化
+                'numbers.a': {
+                    handler() {
+                        console.log('监视a');
+                    }
+                },
+                // 深度监视numbers对象中的每个属性值：
+                numbers: {
+                    deep: true,
+                    handler() {
+                        console.log('numbers');
+                    }
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>5.1-MVVM模型</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 1. 准备容器 -->
+    <div id="root">
+        <h1>Hi, {{name}}!!</h1>
+        <h1>at {{address}}</h1>
+
+        <!-- 测试读取vm对象中 -->
+        <h1>{{$options}}</h1>
+        <!-- 原型中的 -->
+        <h1>{{$emit}}</h1>
+    </div>
+
+    <script>
+        Vue.config.producitonTip = false;
+
+        // 创建一个Vue实例
+        const vm = new Vue({
+            el: '#root', // el 指定当前Vue实例为哪个容器服务，通常为css选择器-id选择器
+            data: {
+                // 存储数据，数据供指定的容器使用
+                name: 'simon',
+                address: 'address'
+            }
+
+        });
+
+        console.log(vm);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue-test</title>
+    <!-- 引入vue.js -->
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 1. 准备容器 -->
+    <div id="root">
+        <h1> hello, {{name}}, {{age}}</h1> 
+    </div>
+
+    <script>
+        Vue.config.producitonTip = false;
+
+        // 创建一个Vue实例
+        const x = new Vue({
+            el: '#root', // el 指定当前Vue实例为哪个容器服务，通常为css选择器-id选择器
+            data: {
+                // 存储数据，数据供指定的容器使用
+                name: 'simon',
+                age: '1',
+            }   
+        }); // 传一个参数，配置对象
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6.2-数据代理定义</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        let obj1 = {
+            x: 100
+        }
+        let obj2 = {
+            y: 200
+        }
+
+        // 通过obj2可以读写obj
+        Object.defineProperty(obj2, 'x',{
+            get(){
+                return obj.x
+            },
+            set(value){
+                obj.x = value;
+            }
+        })
+    </script>
+</body>
+
+</html>
