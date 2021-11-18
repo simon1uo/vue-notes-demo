@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.1-非单文件组件基本使用</title>
+    <!-- 引入vue.js -->
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+<!-- 1. 准备容器 -->
+<h1>🌰 01-非单文件组件基本使用</h1>
+<div id="root">
+    <h3>#root</h3>
+    <!-- 第三部：使用组件（编写组件标签）-->
+    <h3>school 组件：</h3>
+    <school></school>
+    <hr>
+    <h3>student 组件：</h3>
+    <student></student>
+    <hr>
+    <h3>全局组件 hello：</h3>
+    <hello></hello>
+</div>
+<hr>
+
+<div id="root2">
+    <h3>#root2</h3>
+    <hello></hello>
+</div>
+
+<script>
+    Vue.config.producitonTip = false
+
+    // 第一步：创建组件
+    const school = Vue.extend({
+        template: `
+          <div>
+          <h2>name: {{ schoolName }}</h2>
+          <h2>address: {{ address }}</h2>
+          </div>`,
+        // el: 'root' 不能写el配置项
+        data() {
+            // 组件中的data一定要要写成函数式
+            return {
+                schoolName: 'atguigu',
+                address: 'world',
+            }
+        }
+    })
+
+    const student = Vue.extend({
+        template: `<h2>studentName: {{ studentName }}</h2>`,
+        data() {
+            return {
+                studentName: 'Simon'
+            }
+        }
+    })
+
+    // 全局创建组件示例；
+    const hello = Vue.extend({
+        template: `
+          <div><h2>Hello {{ name }}</h2></div>`,
+        data() {
+            return {
+                name: 'Simon'
+            }
+        }
+    })
+
+    // 全局注册组件
+    Vue.component('hello', hello)
+
+    // 创建一个Vue实例
+    new Vue({
+        el: '#root', // el 指定当前Vue实例为哪个容器服务，通常为css选择器-id选择器
+        // 组件配置项
+        // 第二步：注册组件（局部注册）
+        components: {
+            school,
+            student,
+            hello
+        }
+
+    });
+
+    new Vue({
+        el: '#root2',
+        components: {
+            hello
+        }
+    })
+
+</script>
+</body>
+</html>

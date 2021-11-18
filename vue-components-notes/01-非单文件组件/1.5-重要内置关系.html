@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.5-重要的内置关系</title>
+    <!-- 引入vue.js -->
+    <script type="text/javascript" src="../../js/vue.js"></script>
+</head>
+<body>
+<!-- 1. 准备容器 -->
+<h1>🌰 1.5-重要的内置关系</h1>
+<div id="root">
+</div>
+</body>
+<script>
+    Vue.config.producitonTip = false
+
+    const school = Vue.extend({
+        template: `
+          <div>
+          <h3>school 组件：</h3>
+          <h2>schoolName: {{ schoolName }}</h2>
+          <h2>address: {{ address }}</h2>
+          </div>`,
+        data() {
+            // 组件中的data一定要要写成函数式
+            return {
+                schoolName: 'atguigu',
+                address: 'world',
+            }
+        }
+    })
+
+
+    //创建一个vm
+    new Vue({
+        el: 'root',
+        data: {
+            msg: 'Hello'
+        }
+    })
+
+    /*
+        function Demo() {
+            this.a = 1
+            this.b = 2
+        }
+
+        //创建一个Demo的实例对象
+        const d = new Demo()
+
+        console.log(Demo.prototype) //显式原型属性
+        console.log(d.__proto__) //隐式原型属性
+
+        // 通过显式原型对象操作原型对象
+        Demo.prototype.x = 99
+        // console.log(d.__proto__.x)
+        console.log(d.x)
+        console.log(d)
+        console.log(Demo.prototype === d.__proto__) // true
+    */
+
+</script>
+</html>

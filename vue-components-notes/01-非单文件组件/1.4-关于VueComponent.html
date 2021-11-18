@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.4-关于VueComponent</title>
+    <script type="text/javascript" src="../../js/vue.js"></script>
+
+</head>
+<body>
+<div id="root">
+</div>
+</body>
+<script>
+    Vue.config.producitonTip = false
+
+    const school = Vue.extend({
+        template: `
+          <div>
+          <h3>school 组件：</h3>
+          <h2>schoolName: {{ schoolName }}</h2>
+          <h2>address: {{ address }}</h2>
+          <button @click="showName">显示schoolName</button>
+          </div>`,
+        data() {
+            // 组件中的data一定要要写成函数式
+            return {
+                schoolName: 'atguigu',
+                address: 'world',
+            }
+        }, methods: {
+            showName(){
+                // 组件中的this指向VueComponent（与vm相似）
+                console.log('showName', this)
+            }
+        }
+    })
+
+    const test = Vue.extend({
+        template: `<h2>{{name}}组件</h2>`,
+        data (){
+            return {
+                name: 'test'
+            }
+        }
+    })
+
+    const hello = Vue.extend({
+        template: `
+          <div>
+          <h3>hello 组件：</h3>
+          <h2>{{ msg }}</h2>
+          <test></test>
+          </div>
+        `,
+        data() {
+            return {
+                msg: 'Hello Vue'
+            }
+        },components:{
+            test
+        }
+    })
+
+
+
+    // school.a = 99 // 验证是否是同一个 VueComponent
+    console.log('@', school)
+    console.log('#', hello)
+
+    new Vue({
+        template: `
+          <school></school>`,
+        el: '#root',
+        components: {
+            school,
+            hello
+        }
+    })
+</script>
+</html>
