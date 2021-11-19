@@ -1,22 +1,18 @@
 <!--App组件总汇所有组件-->
 <template>
   <div>
-    <img src="./assets/logo.png" alt="">
-    <School></School>
-    <hr>
-    <Student></Student>
+    <Student/>
   </div>
 </template>
 
 <script>
 // 引入组件
-import School from "./components/School";
+// import School from "./components/School";
 import Student from "./components/Student";
 
 export default {
   name: "App",
-  components:{
-    School,
+  components: {
     Student
   }
 }

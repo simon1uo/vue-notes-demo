@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>学生</h1>
+    <h1>学生信息</h1>
     <h2>name: {{ name }}</h2>
     <h2>age: {{ age }}</h2>
   </div>
