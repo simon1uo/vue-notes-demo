@@ -26,19 +26,18 @@ export default {
   },
   data() {
     return {
-      /*todos: [
+      todos: [
         {id: '001', title: '吃饭', done: true},
         {id: '002', title: '睡觉', done: false},
         {id: '003', title: '学习', done: false}
-      ]*/
-      todos: JSON.parse(localStorage.getItem('todos')) || []
+      ]
     }
   },
   methods: {
     // 添加一个TODO
-    AddTodo(todo) {
-      // console.log("App's receving data", todo)
-      this.todos.unshift(todo)
+    AddTodo(x) {
+      console.log("App's receving data", x)
+      this.todos.unshift(x)
     },
     // 更新Todo勾选状态
     CheckTodo(id) {
@@ -62,15 +61,6 @@ export default {
       this.todos = this.todos.filter((todo) => {
         return !todo.done
       })
-    }
-  },
-  watch: {
-    // 监视 todos 对象
-    todos: {
-      deep: true,
-      handler(value) {
-        localStorage.setItem('todos', JSON.stringify(value))
-      }
     }
   }
 }

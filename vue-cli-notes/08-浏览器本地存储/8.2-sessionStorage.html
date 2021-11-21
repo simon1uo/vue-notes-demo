@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8.1-sessionStorage</title>
+</head>
+<body>
+<h2>🌰 sessionStorage</h2>
+<button onclick="saveData()">点我保存数据</button>
+<hr>
+<button onclick="readData()">点我读数据</button>
+<hr>
+<button onclick="deleteData()">点我删除数据</button>
+<hr>
+<button onclick="deleteAllData()">点我删除全部数据</button>
+
+
+<script type="text/javascript">
+    let person = {
+        name: 'simon',
+        age: 3
+    }
+
+    function saveData() {
+        sessionStorage.setItem('msg', 'hello Vue') // 重复存储会替换
+        sessionStorage.setItem('msg2', 666) // 数字会被转换为字符串
+        // sessionStorage.setItem('person', person) // 不可对象转化为字符串
+        sessionStorage.setItem('person', JSON.stringify(person))
+    }
+
+    function readData() {
+        console.log(sessionStorage.getItem('msg'))
+
+        // 读取对象
+        const result = sessionStorage.getItem('person')
+        console.log(JSON.parse(result))
+    }
+
+    function deleteData(){
+        sessionStorage.removeItem('msg')
+    }
+
+    function deleteAllData(){
+        sessionStorage.clear()
+    }
+</script>
+</body>
+</html>
