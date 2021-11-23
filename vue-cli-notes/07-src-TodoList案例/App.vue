@@ -3,9 +3,9 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <UserHeader :AddTodo="AddTodo"></UserHeader>
-        <UserList :todos="todos" :CheckTodo="CheckTodo" :DeleteTodo="DeleteTodo"/>
-        <UserFooter :todos="todos" :CheckAllTodo="CheckAllTodo" :ClearAllTodo="ClearAllTodo"></UserFooter>
+        <UserHeader @addTodo="addTodo"></UserHeader>
+        <UserList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
+        <UserFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"></UserFooter>
       </div>
     </div>
   </div>
@@ -36,29 +36,29 @@ export default {
   },
   methods: {
     // 添加一个TODO
-    AddTodo(todo) {
+    addTodo(todo) {
       // console.log("App's receving data", todo)
       this.todos.unshift(todo)
     },
     // 更新Todo勾选状态
-    CheckTodo(id) {
+    checkTodo(id) {
       this.todos.forEach((todo) => {
         if (todo.id === id) todo.done = !todo.done
         console.log(todo.done)
       })
     },
     // 删除Todo项
-    DeleteTodo(id) {
+    deleteTodo(id) {
       this.todos = this.todos.filter(todo => todo.id !== id)
     },
     // 全选Todo项
-    CheckAllTodo(done) {
+    checkAllTodo(done) {
       this.todos.forEach((todo) => {
         todo.done = done
       })
     },
     // 清除所有已经完成的Todo
-    ClearAllTodo() {
+    clearAllTodo() {
       this.todos = this.todos.filter((todo) => {
         return !todo.done
       })

@@ -3,8 +3,8 @@
     <UserItem v-for="todoObj in todos"
               :key="todoObj.id"
               :todo="todoObj"
-              :CheckTodo="CheckTodo"
-              :DeleteTodo="DeleteTodo"/>
+              :checkTodo="checkTodo"
+              :deleteTodo="deleteTodo"/>
   </ul>
 
 </template>
@@ -16,7 +16,7 @@ export default {
   name: "UserList",
   components: {
     UserItem
-  }, props: ['todos', 'CheckTodo','DeleteTodo']
+  }, props: ['todos', 'checkTodo','deleteTodo']
 }
 </script>
 

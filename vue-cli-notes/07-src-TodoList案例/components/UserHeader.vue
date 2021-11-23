@@ -9,18 +9,15 @@ import {nanoid} from "nanoid"
 
 export default {
   name: "UserHeader",
-  props: ['AddTodo'],
   data() {
     return {
       title: ''
     }
   },
-
-
   methods: {
     Add() {
       // 校验数据
-      if(!this.title) return alert("输入不能为空")
+      if (!this.title) return alert("输入不能为空")
 
       // 将用户输入包装成一个todoObj对象
       const todoObj = {
@@ -29,7 +26,7 @@ export default {
         done: false
       }
       // console.log(todoObj)
-      this.AddTodo(todoObj)
+      this.$emit('addTodo', todoObj)
       this.title = ''
     }
   }

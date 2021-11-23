@@ -1,7 +1,7 @@
 <template>
   <li>
     <label>
-      <input type="checkbox" :checked="todo.done" @change="UpdateChecked(todo.id)"/>
+      <input type="checkbox" :checked="todo.done" @change="updateChecked(todo.id)"/>
       <!--不推荐在这里使用 v-model-->
       <!--<input type="checkbox" v-model="todo.done"/>-->
       <span>{{ todo.title }}</span>
@@ -13,16 +13,16 @@
 <script>
 export default {
   name: "UserItem",
-  props: ['todo', 'CheckTodo', 'DeleteTodo'],
+  props: ['todo', 'checkTodo', 'deleteTodo'],
   methods: {
     // 勾选项状态
-    UpdateChecked(id) {
-      this.CheckTodo(id)
+    updateChecked(id) {
+      this.checkTodo(id)
     },
     // 删除Todo项
     Delete(id) {
       if (confirm('确定删除吗')) {
-        this.DeleteTodo(id)
+        this.deleteTodo(id)
       }
     }
   }
