@@ -1,5 +1,5 @@
 <template>
-  <div class="test">
+  <div class="school">
     <h1>学生信息</h1>
     <h2>name: {{ name }}</h2>
   </div>
@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style scoped>
-.test{
+.school{
   background-color: pink;
 }
 </style>
