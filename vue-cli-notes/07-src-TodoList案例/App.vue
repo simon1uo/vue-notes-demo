@@ -4,7 +4,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <UserHeader @addTodo="addTodo"></UserHeader>
-        <UserList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
+        <UserList :todos="todos"/>
         <UserFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"></UserFooter>
       </div>
     </div>
@@ -26,18 +26,12 @@ export default {
   },
   data() {
     return {
-      /*todos: [
-        {id: '001', title: '吃饭', done: true},
-        {id: '002', title: '睡觉', done: false},
-        {id: '003', title: '学习', done: false}
-      ]*/
       todos: JSON.parse(localStorage.getItem('todos')) || []
     }
   },
   methods: {
     // 添加一个TODO
     addTodo(todo) {
-      // console.log("App's receving data", todo)
       this.todos.unshift(todo)
     },
     // 更新Todo勾选状态
@@ -54,6 +48,7 @@ export default {
     // 全选Todo项
     checkAllTodo(done) {
       this.todos.forEach((todo) => {
+
         todo.done = done
       })
     },
@@ -72,7 +67,15 @@ export default {
         localStorage.setItem('todos', JSON.stringify(value))
       }
     }
-  }
+  },
+  mounted() {
+    this.$bus.$on('checkTodo',this.checkTodo)
+    this.$bus.$on('deleteTodo',this.deleteTodo)
+  },
+  beforeDestroy() {
+    this.$bus.$off('checkTodo')
+    this.$bus.$off('deleteTodo')
+  },
 }
 </script>
 

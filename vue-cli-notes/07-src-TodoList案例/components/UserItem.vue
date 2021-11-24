@@ -13,16 +13,18 @@
 <script>
 export default {
   name: "UserItem",
-  props: ['todo', 'checkTodo', 'deleteTodo'],
+  props: ['todo'],
   methods: {
     // 勾选项状态
     updateChecked(id) {
-      this.checkTodo(id)
+      // this.checkTodo(id)
+      this.$bus.$emit('checkTodo', id)
     },
     // 删除Todo项
     Delete(id) {
       if (confirm('确定删除吗')) {
-        this.deleteTodo(id)
+        // this.deleteTodo(id)
+        this.$bus.$emit('deleteTodo', id)
       }
     }
   }
