@@ -25,7 +25,7 @@ export default {
       console.log('add回调被调用')
     },
     sendStudentName() {
-      // 触发Student组件实例身上的atguigu事件
+      // 触发Student组件实例身上的get事件
       this.$emit('get', this.name, 1, 2, 3)
       // this.$emit('click') // 组件默认认为是自定义事件
     },
@@ -37,10 +37,10 @@ export default {
       // this.$off(['get', 'demoEvent'])
 
       // 解绑所有自定义事件
-      this.$off()
-    },death(){
+      // this.$off()
+    },
+    death(){
       this.$destroy() // 销毁了当前的Student组件的实例，销毁后所有的Student实例的自定义事件全都不奏效
-
     }
   }
 }

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let person = {
+        name: '张三',
+        age: 18
+    }
+
+    // 模拟Vue2实现响应式
+    /*let p = {}
+    Object.defineProperty(p, 'name', {
+        configurable: true, // 可配置才可添加或删除
+        get() {
+            return person.name
+        },
+        set(value) {
+            console.log('name being changed')
+            person.name = value
+        }
+    })
+    Object.defineProperty(p, 'age', {
+        get() {
+            return person.age
+        },
+        set(value) {
+            console.log('age being changed')
+            person.age = value
+        }
+    })*/
+
+    // 模拟Vue3实现响应式
+    const p = new Proxy(person, {
+        // 读取属性时调用
+        get(target, propName) {
+            console.log(`p的${propName}属性被读取`)
+            return Reflect.get(target, propName)
+        },
+        //追加或修改时调用
+        set(target, propName, value) {
+            console.log(`p属性${propName}被修改为${value}`)
+            // target[propName] = value
+            return Reflect.set(target, propName, value)
+        },
+        // 删除属性时调用
+        deleteProperty(target, properName) {
+            console.log(`p的属性${properName}被删除`)
+            // return delete target[properName]
+            return Reflect.deleteProperty(target, properName)
+        }
+    }) // 映射对person对象的操作，参数为对象
+
+    let obj = {a:1, b:2}
+    // 通过Object.defineProperty操作
+    /*Object.defineProperty(obj, 'c', {
+        get(){
+            return 3
+        }
+    })
+    Object.defineProperty(obj, 'c', {
+        get(){
+            return 3
+        }
+    })*/ // 重复定义报错
+
+    // 通过Reflect.defineProperty调用
+    /*const x1 = Reflect.defineProperty(obj, 'c', {
+        get(){
+            return 3
+        }
+    })
+    console.log(x1)
+
+    const x2 = Reflect.defineProperty(obj, 'c', {
+        get(){
+            return 4
+        }
+    })
+    console.log(x2)*/
+
+</script>
+</html>

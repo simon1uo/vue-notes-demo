@@ -1,7 +1,7 @@
 <template>
   <div class="school">
     <h1>学校信息</h1>
-    <h2>name: {{ name}}</h2>
+    <h2>name: {{ name }}</h2>
     <h2>address: {{ address }}</h2>
     <button @click="sendSchoolName">把学校名给App</button>
 
@@ -12,22 +12,26 @@
 
 export default {
   name: "School", // 组件名
+  props:['getSchoolName'],
   data() {
     return {
-      name: 'ASchool',
-      address: 'World'
+      name: 'schoolName',
+      address: 'schoolAddress'
     }
-  }, props: ['getSchoolName'],
-  methods: {
-    sendSchoolName() {
+  },
+  methods:{
+    sendSchoolName(){
       this.getSchoolName(this.name)
     }
+  },
+  mounted() {
+
   }
 }
 </script>
 
 <style scoped>
-.school{
+.school {
   background-color: skyblue;
   padding: 5px;
   margin-top: 5px;

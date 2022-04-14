@@ -1,7 +1,8 @@
 <!--App组件总汇所有组件-->
 <template>
   <div class="app">
-    <h1>{{ msg }} studentName: {{studentName}}</h1>
+    <h1>{{ msg }} studentName: {{ studentName }}</h1>
+
     <!--通过父组件给子组件传递函数类型的props实现，子给父传递数据-->
     <School :getSchoolName="getSchoolName"/>
 
@@ -32,11 +33,12 @@ export default {
       studentName: ''
     }
   },
-  methods: {show(){
-    alert('you clicked Student component')
+  methods: {
+    show() {
+      alert('you clicked Student component')
     },
     getSchoolName(schoolName) {
-      console.log('SchoolName:', schoolName)
+      console.log('SchoolName:', schoolName) // 从子组件中获取schoolName
     },
     getStudentName(studentName, ...params) {
       console.log('studentName:', studentName, params)
@@ -44,7 +46,7 @@ export default {
     }
   },
   mounted() {
-    this.$refs.student.$on('get', this.getStudentName)
+    this.$refs.student.$on('get', this.getStudentName) // 绑定自定义事件
     // this.$refs.student.$once('get', this.getStudentName)
 
     /*this.$refs.student.$on('get', function(studentName, ...params) {
